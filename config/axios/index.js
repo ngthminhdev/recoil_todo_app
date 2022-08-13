@@ -2,16 +2,23 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import useSessionStorage from "../../app/hooks/useSessionStorage";
 
+const accessToken = useSessionStorage("authentication", "accessToken");
+
 const axiosJWT = axios.create({
   baseUrl: "http://localhost:3000",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + accessToken,
+  },
 });
 
 axiosJWT.interceptors.request.use(
   async (config) => {
-    const accessToken = useSessionStorage("authentication", "accessToken");
+    // const accessToken = useSessionStorage("authentication", "accessToken");
     const authentication = useSessionStorage("authentication");
 
     console.log("interceptor");
+
     let date = new Date();
     const decodedToken = jwt_decode(accessToken);
 

@@ -10,7 +10,14 @@ module.exports = withMT({
   //   preflight: false,
   // },
   theme: {
-    extend: {},
+    extend: {
+      aspectRatio: {
+        '4/3': '956 / 1276',
+      },
+      spacing: {
+        '1000': '150rem',
+      }
+    },
   },
   plugins: [],
 });

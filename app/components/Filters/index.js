@@ -23,7 +23,7 @@ export default function Filters() {
   };
 
   const handleFilterByPrioritiesChange = (value) => {
-    setFilterPriorities(value);
+    setFilterPriorities([value]);
   };
 
   const handleFilterBySearchTextChange = (e) => {

@@ -7,7 +7,8 @@ const UserSchema = new Schema({
     username: {type: String, required: true, minLength: 6, maxLength: 16},
     password: {type: String, required: true, minLength: 6},
     role: {type: String, required: true, default: 'basic'},
-    image: {type: String, required: true, default: 'https://thumbs.dreamstime.com/b/anonymous-user-icon-person-business-suit-question-mark-internet-security-concept-vector-illustration-88848107.jpg'}
+    image: {type: String, required: true, default: 'https://res.cloudinary.com/manga-dev/image/upload/v1658737930/my-uploads/anoymousUser_hmpihv.png'},
+    notifications: { type: Array }
 }, {
     collection: 'users',
     timestamps: true

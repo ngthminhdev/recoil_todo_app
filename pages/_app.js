@@ -1,8 +1,9 @@
-import 'tailwindcss/tailwind.css';
-import '../styles/globals.css';
 import { ThemeProvider } from "@material-tailwind/react";
-import { RecoilRoot } from 'recoil';
 import 'antd/dist/antd.css';
+import { RecoilRoot } from 'recoil';
+import 'tailwindcss/tailwind.css';
+
+import '../styles/globals.css';
 
 
 function MyApp({ Component, pageProps }) {

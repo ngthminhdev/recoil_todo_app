@@ -6,10 +6,12 @@ connectDB();
 
 const logoutHandler = async (req, res) => {
   const { method } = req;
+  const { id } = req.body;
 
   switch (method) {
     case "POST":
       try {
+        await StoreToken.findByIdAndDelete(id);
         res.setHeader(
           "Set-Cookie",
           cookie.serialize("refreshToken", "", {
@@ -17,7 +19,6 @@ const logoutHandler = async (req, res) => {
             path: "/",
           })
         );
-        await StoreToken.remove({});
         return res.status(200).json("Logged out!");
       } catch (err) {
         return res.status(400).json({ success: false, message: err });

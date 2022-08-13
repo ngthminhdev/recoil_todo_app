@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Card, CardBody, Input, Button } from "@material-tailwind/react";
-import { useState, Fragment, useEffect } from "react";
-import { useRouter } from "next/router";
-import Head from "next/head";
+import { Button, Card, CardBody, Input } from "@material-tailwind/react";
 import axios from "axios";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { Fragment, useEffect, useState } from "react";
+
 import useSessionStorage from "../../app/hooks/useSessionStorage";
 
 export default function Login() {
@@ -13,6 +14,14 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const isLoggedIn = useSessionStorage("authentication", "isLoggedIn");
+
+  useEffect(() => {
+    router.prefetch("/user/dashboard");
+
+    if (isLoggedIn) {
+      router.push("/user/dashboard");
+    }
+  }, [router]);
 
   const handleRegisterFormSubmit = async (e) => {
     e.preventDefault();
@@ -38,14 +47,6 @@ export default function Login() {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    router.prefetch("/user/dashboard");
-
-    if (isLoggedIn) {
-      router.push("/user/dashboard");
-    }
-  }, [router]);
 
   return (
     <Fragment>

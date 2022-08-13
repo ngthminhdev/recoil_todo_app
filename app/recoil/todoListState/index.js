@@ -7,16 +7,7 @@ export const todoListState = atom({
       { id: 2, name: "Learn Redux", priority: "Medium", completed: false },
       { id: 3, name: "Learn NextJs", priority: "Medium", completed: false },
       { id: 4, name: "Learn Axios", priority: "Low", completed: true },
-    ],
-//   default: {
-//     todoList: [
-//       { id: 1, name: "Learn Recoil", priority: "High", completed: false },
-//       { id: 2, name: "Learn Redux", priority: "Medium", completed: false },
-//       { id: 3, name: "Learn NextJs", priority: "Medium", completed: false },
-//       { id: 4, name: "Learn Axios", priority: "Low", completed: true },
-//     ],
-//     filterByStatus: 'All',
-// }
+    ],  
 });
 
 export const todoListFilterByStatus = atom({
@@ -68,7 +59,8 @@ export const statusFilterList = selector({
         return priorities.length
           ? todo.name.includes(searchText) && priorities.includes(todo.priority)
           : todo.name.includes(searchText);
-      }
+      };
+      
       return (
         todo.name.includes(searchText) &&
         (status === "Completed" ? todo.completed : !todo.completed) &&

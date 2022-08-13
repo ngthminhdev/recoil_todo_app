@@ -1,22 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import Filters from "../app/components/Filters";
 import TodoList from "../app/components/TodoList";
+import useSessionStorage from "../app/hooks/useSessionStorage";
 
 export default function Home() {
-  // const router = useRouter();
-  // const isLoggedIn = useSessionStorage("authentication", "isLoggedIn");
+  const router = useRouter();
+  const isLoggedIn = useSessionStorage("authentication", "isLoggedIn");
 
-  // useEffect(() => {
-  //   router.prefetch("/auth/login");
-  //   router.prefetch("/user/dashboard");
+  useEffect(() => {
+    router.prefetch("/auth/login");
+    router.prefetch("/user/dashboard");
 
-  //   if (isLoggedIn) {
-  //     router.push("/user/dashboard");
-  //   } else {
-  //     router.push("/auth/login");
-  //   }
-  // }, [router]);
-
+    if (isLoggedIn) {
+      router.push("/user/dashboard");
+    } else {
+      router.push("/auth/login");
+    }
+  }, [router]);
   return (
     <div
       style={{

@@ -1,6 +1,7 @@
 import User from "../../../models/User";
 import connectDB from "../../../database";
 import withAuth from "../../../app/middleware/withAuth"
+import withRoles from "../../../app/middleware/withRoles"
 
 connectDB();
 
@@ -10,9 +11,10 @@ const userHandler = async (req, res) => {
   switch (method) {
     case "GET":
       try {
+        const users = await User.find({});
         return res.status(200).json({
-          success: false,
-          message: "Please insert query string!"
+          success: true,
+          users: users,
         });
       } catch (err) {
         return res.status(500).json(err);
@@ -23,4 +25,4 @@ const userHandler = async (req, res) => {
   }
 };
 
-export default userHandler;
+export default withAuth(userHandler);

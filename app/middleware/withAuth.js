@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken';
 
 const withAuth = (handler) => {
     return (req, res) => {
-        const authorizationHeader = req.headers['authorization'];
-        const token = authorizationHeader.split(' ')[1];
+        const authorizationHeader = req?.headers['authorization'];
+        const token = authorizationHeader?.split(' ')[1];
 
         if (token) {
             jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {

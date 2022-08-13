@@ -19,14 +19,14 @@ const loginHandler = async (req, res) => {
         //Check email
         if (!user) {
           return res
-            .status(404)
+            .status(401)
             .json({ success: false, message: "Email is not registered" });
         }
         //check password
         const validPassword = await bcrypt.compare(password, user.password);
 
         if (!validPassword) {
-          return res.status(404).json({
+          return res.status(401).json({
             success: false,
             message: "Email or password is incorrect",
           });
@@ -36,7 +36,7 @@ const loginHandler = async (req, res) => {
           const accessToken = generateAccessToken(user);
           const refreshToken = generateRefreshToken(user);
           // console.log(refreshToken, typeof refreshToken);
-          await StoreToken.create({ refreshToken: refreshToken });
+          await StoreToken.create({ _id: user._id, refreshToken: refreshToken });
           //Send cookie to browser
           res.setHeader(
             "Set-Cookie",
