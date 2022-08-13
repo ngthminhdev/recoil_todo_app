@@ -49,7 +49,7 @@ const All = () => {
                     color="pink"
                     className="mt-4"
                     onClick={() => {
-                      push(`/product/${product._id}`);
+                      push(`/product/${product.slug}/${product._id}`);
                     }}
                   >
                     Details

@@ -254,11 +254,11 @@ const Create = () => {
                   setData({ ...data, category: value });
                 }}
               >
-                <Option value="Category 1">Category 1</Option>
-                <Option value="Category 2">Category 2</Option>
-                <Option value="Category 3">Category 3</Option>
-                <Option value="Category 4">Category 4</Option>
-                <Option value="Category 5">Category 5</Option>
+                <Option value="nhan">Nhẫn</Option>
+                <Option value="vong">Vòng</Option>
+                <Option value="lac">Lắc</Option>
+                <Option value="day-chuyen 4">Dây chuyền</Option>
+                <Option value="bong-tai">Bông tai</Option>
               </Select>
             </div>
             <Button className="mt-6 bg-pink-300" type="submit">

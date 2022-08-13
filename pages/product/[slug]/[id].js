@@ -4,12 +4,11 @@ import Head from "next/head";
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import useSessionStorage from "../../app/hooks/useSessionStorage";
+import useSessionStorage from "../../../app/hooks/useSessionStorage";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { useUser, useProduct, useFeedback } from "../../app/hooks";
+import { useUser, useProduct, useFeedback } from "../../../app/hooks";
 
 const All = ({data}) => {
-  console.log(data);
   const router = useRouter();
   const { id } = router.query;
 
@@ -295,7 +294,7 @@ export const getStaticPaths = async () => {
   const products = await res.data.products;
   const paths = products.map((product) => {
     return {
-      params: { id: product._id },
+      params: { id: product._id, slug: product.slug },
     };
   });
   return {
