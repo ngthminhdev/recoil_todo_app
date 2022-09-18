@@ -6,7 +6,7 @@ const CommentSchema = new Schema({
     content: { type: String },
     rate: { type: Number },
     targetId: { type: Schema.Types.ObjectId, ref: 'Comment' },
-    isReplied: { type: Boolean, default: false }
+    isReplied: { type: Boolean, default: false },
 }, {
     collection: 'comments',
     timestamps: true

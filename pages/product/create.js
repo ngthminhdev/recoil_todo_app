@@ -3,7 +3,7 @@ import {
   Input,
   Option,
   Select,
-  Textarea
+  Textarea,
 } from "@material-tailwind/react";
 import axios from "axios";
 import Head from "next/head";
@@ -15,6 +15,7 @@ const Create = () => {
   const accessToken = useSessionStorage("authentication", "accessToken");
 
   const [previewImage, setPreviewImage] = useState();
+  const [previewVideo, setPreviewVideo] = useState();
   const [fileInputState, setFileInputState] = useState();
   const [fileSubInputState, setfileSubInputState] = useState([]);
   const [quantities, setQuantities] = useState([]);
@@ -34,7 +35,12 @@ const Create = () => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      setPreviewImage(reader.result);
+      if (file.type.includes("image")) {
+        setPreviewImage(reader.result);
+      }
+      if (file.type.includes("video")) {
+        setPreviewVideo(reader.result);
+      }
     };
   };
 
@@ -275,6 +281,13 @@ const Create = () => {
               width={200}
               height={200}
             />
+          </div>
+        )}
+        {previewVideo && (
+          <div className="absolute bottom-[50px] right-[100px]">
+            <video controls style={{ width: "200px", height: "200px" }}>
+              <source src={previewVideo} alt="video" />
+            </video>
           </div>
         )}
       </div>

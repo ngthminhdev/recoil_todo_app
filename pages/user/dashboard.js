@@ -19,14 +19,8 @@ const Dashboard = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.prefetch("/auth/login");
-
-    if (!isLoggedIn) {
-      router.push("/auth/login");
-    } else {
       fetchData();
-      setUsername(user.username);
-    }
+      setUsername(user?.username);
 
     async function fetchData() {
       try {

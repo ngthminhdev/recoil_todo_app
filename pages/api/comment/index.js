@@ -1,6 +1,7 @@
 import connectDB from "../../../database";
 import Comment from "../../../models/Comment";
 import Product from "../../../models/Product";
+import Buyer from "../../../models/Buyer";
 import User from "../../../models/User";
 import mongoose from "mongoose";
 
@@ -54,15 +55,27 @@ const handler = async (req, res) => {
             { new: true }
           );
         }
-        const product = await Comment.find({ targetId, userId });
+        const product = await Buyer.findOne({ targetId, userId });
         // console.log(product);
 
-        if (product.length > 0) {
+        if (!product) {
+          return res.status(403).json({
+            success: false,
+            message: 'Bạn không có quyền đánh giá sản phẩm này! Vui lòng mua trước'
+          })
+        }
+
+        if (product.isFeedback) {
           return res.status(409).json({
             success: false,
             message: "Bạn đã đánh giá sản phẩm này rồi!",
           });
         }
+
+        await Buyer.findOneAndUpdate(
+          { targetId, userId },
+          { $set: { isFeedback: true}}
+        )
 
         await Comment.create({ userId, content, rate, targetId });
 

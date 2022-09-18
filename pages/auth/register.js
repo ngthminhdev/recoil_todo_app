@@ -36,7 +36,7 @@ export default function Home() {
     router.prefetch("/user/dashboard");
 
     if (isLoggedIn) {
-      router.push("/user/dashboard");
+      router.replace("/user/dashboard");
     }
   }, [router]);
 

@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { push } from "next/router";
 import { Fragment } from "react";
+import Breadcrumb from "../../app/components/Breadcrumb";
 
 import { useProduct } from "../../app/hooks";
 
@@ -19,6 +20,18 @@ const All = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="mt-10 w-screen flex flex-col justify-center items-center">
+      <div className="mt-10">
+          <Breadcrumb site={[
+            {
+              title: "Trang Chủ",
+              href: "/"
+            },
+            {
+              title: "Product",
+              href: "/product/all"
+            }
+          ]} />
+        </div>
         <div className="font-bold text-pink-400 text-3xl">Product Site</div>
         <div className="flex flex-row flex-wrap justify-center items-center">
           {data?.products?.map((product) => {
